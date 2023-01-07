@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: main
+name: Parse the Files
 
 # Controls when the workflow will run
 on:
@@ -19,10 +19,4 @@ jobs:
       
       # Runs a single command using the runners shell
       - name: Parsing pipeline.yml
-        run: |
-          wf_list=$(yq e '.pipeline[].wf' infa/pipeline.yml)
-          #echo $wf_list
-          for i in $wf_list
-          do
-              echo $i
-          done
+        run: echo "Parsing the pipeline"
