@@ -11,6 +11,8 @@ jobs:
   # This workflow contains a single job called "build"
   build:
       uses: shrikantrshelke/shared-workflow/.github/workflows/build.yml@main
+  unit_test:
+      uses: shrikantrshelke/shared-workflow/.github/workflows/unit_test.yml@main
       # Runs a single command using the runners shell
       #- name: Build Docker Image
       #  run: |
