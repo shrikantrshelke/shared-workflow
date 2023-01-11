@@ -12,13 +12,15 @@ jobs:
   unit_test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    outputs:
+      unit_test_list: ${{ steps.get_test_cases.outputs.ut_list }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       # Runs a single command using the runners shell
       - name: yq - portable yaml processor
+        id: get_test_cases
       # You may pin to the exact commit or the version.
       # uses: mikefarah/yq@87cba2ecbeaecf860efcceb66deab46ae030ce1e
         uses: mikefarah/yq@v4.30.6
@@ -26,10 +28,14 @@ jobs:
           # The Command which should be run
           cmd: |
             myarr=$(yq '.testing.unit.file | @csv'  infra/pipeline.yml)
-            IFS=","
-            for test_case in $myarr
-            do
-                echo "Runnng testcase: $test_case"
-            done
-
-
+            echo "ut_list=$myarr" >> $GITHUB_OUTPUT
+            
+  unit_test_matrix:
+      runs-on: ubuntu-latest
+      needs: [unit_test]
+      strategy:
+          matrix:
+              test_case: ${{needs.unit_test.outputs.unit_test_list}}
+      steps:
+          - name: Running ${{ matrix.test_case }}
+            run: echo "${{ matrix.test_case }}"
