@@ -25,7 +25,7 @@ jobs:
         with:
           # The Command which should be run
           cmd: |
-            myarr=$(yq '.testing.unit.file | @csv'  pipeline-1.yml)
+            myarr=$(yq '.testing.unit.file | @csv'  pipeline.yml)
             IFS=","
             for test_case in $myarr
             do
