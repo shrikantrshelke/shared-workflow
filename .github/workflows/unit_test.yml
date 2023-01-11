@@ -25,8 +25,11 @@ jobs:
         with:
           # The Command which should be run
           cmd: |
-            ls -l
-            TEST_CASES=$(yq '.testing.unit.file' < infra/pipeline.yml)
-            echo "$TEST_CASES"
+            myarr=$(yq '.testing.unit.file | @csv'  pipeline-1.yml)
+            IFS=","
+            for test_case in $myarr
+            do
+                echo "Runnng testcase: $test_case"
+            done"
 
 
