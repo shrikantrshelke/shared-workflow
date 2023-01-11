@@ -28,7 +28,13 @@ jobs:
           # The Command which should be run
           cmd: |
             myarr=$(yq '.testing.unit.file | @csv'  infra/pipeline.yml)
-            echo "ut_list=$myarr" >> $GITHUB_OUTPUT
+            IFS=","
+            for test_case in $myarr
+            do
+                #echo $test_case
+                case_list+=("$test_case")
+            done
+            echo "ut_list=${case_list[@]}" >> $GITHUB_OUTPUT
             
   unit_test_matrix:
       runs-on: ubuntu-latest
