@@ -28,7 +28,7 @@ jobs:
           # The Command which should be run
           cmd: |
               myarr="$(yq '.testing.unit.file | @csv'  infra/pipeline.yml)"
-              echo "ut_list=${myarr[@]}" >> $GITHUB_OUTPUT
+              echo 'ut_list="${myarr[@]}"' >> $GITHUB_OUTPUT
             
   unit_test_matrix:
       runs-on: ubuntu-latest
@@ -38,4 +38,4 @@ jobs:
               test_case: ${{needs.unit_test.outputs.unit_test_list}}
       steps:
           - name: Running ${{ matrix.test_case }}
-            run: echo "[${{ matrix.test_case }}]"
+            run: echo "${{ matrix.test_case }}"
