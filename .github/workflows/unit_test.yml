@@ -25,7 +25,8 @@ jobs:
         with:
           # The Command which should be run
           cmd: |
-            TEST_CASES=$(yq '.testing.unit.file | length'  infra/pipeline.yml)
+            ls -l
+            TEST_CASES=$(yq '.testing.unit.file' < infra/pipeline.yml)
             echo "$TEST_CASES"
 
 
