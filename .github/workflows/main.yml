@@ -17,8 +17,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: Build the Project
-        uses: shrikantrshelke/shared-workflow/.github/workflows/main.yml@main
+      - uses: shrikantrshelke/shared-workflow/.github/workflows/main.yml@main
       # Runs a single command using the runners shell
       #- name: Build Docker Image
       #  run: |
