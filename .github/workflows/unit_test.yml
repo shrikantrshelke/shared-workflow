@@ -30,6 +30,6 @@ jobs:
             for test_case in $myarr
             do
                 echo "Runnng testcase: $test_case"
-            done"
+            done
 
 
