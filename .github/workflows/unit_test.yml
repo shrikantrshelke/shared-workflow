@@ -32,7 +32,7 @@ jobs:
               for test_case in ${myarr[@]}
               do
                   #echo $test_case
-                  ut_list+=("$test_case")
+                  ut_list+=($test_case)
               done
               echo "ut_list=$myarr" >> $GITHUB_OUTPUT
             
