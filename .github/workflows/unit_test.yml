@@ -28,7 +28,7 @@ jobs:
           # The Command which should be run
           cmd: |
               myarr="$(yq '.testing.unit.file'  infra/pipeline.yml)"
-              IFS=$'\n' ut=($myarr)
+              IFS=$'\n' ut="($myarr)"
                 echo "ut_list=$ut" >> $GITHUB_OUTPUT
 
   unit_test_matrix:
