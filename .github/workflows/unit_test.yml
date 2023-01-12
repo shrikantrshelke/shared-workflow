@@ -27,7 +27,7 @@ jobs:
         with:
           # The Command which should be run
           cmd: |
-              myarr="$(yq '.testing.unit.file'  infra/pipeline.yml)"
+              myarr="$(yq '.testing.unit.file[]'  infra/pipeline.yml)"
               IFS=$'\n' ut="($myarr)"
                 echo "ut_list=$ut" >> $GITHUB_OUTPUT
 
