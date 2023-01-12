@@ -28,8 +28,8 @@ jobs:
           # The Command which should be run
           cmd: |
               myarr="$(yq '.testing.unit.file | @csv'  infra/pipeline.yml)"
-              IFS=$'\n'
-                echo "ut_list=($myarr)" >> $GITHUB_OUTPUT
+              IFS=$'\n' ut=($myarr)
+                echo "ut_list=$ut" >> $GITHUB_OUTPUT
 
   unit_test_matrix:
       runs-on: ubuntu-latest
