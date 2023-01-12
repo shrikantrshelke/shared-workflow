@@ -29,6 +29,7 @@ jobs:
           cmd: |
               myarr="$(yq '.testing.unit.file[]'  infra/pipeline.yml)"
               IFS=$'\n' ut="($myarr)"
+                echo "${ut[@]}"
                 echo "ut_list=$ut" >> $GITHUB_OUTPUT
 
   unit_test_matrix:
